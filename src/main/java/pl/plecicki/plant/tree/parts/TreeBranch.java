@@ -1,9 +1,6 @@
 package pl.plecicki.plant.tree.parts;
 
-import pl.plecicki.exceptions.NotEnoughSunToMeetPassedGrowAmount;
-import pl.plecicki.exceptions.NotEnoughSunToPass;
-import pl.plecicki.exceptions.NotEnoughWaterToMeetPassedGrowAmount;
-import pl.plecicki.exceptions.NotEnoughWaterToPass;
+import pl.plecicki.exceptions.*;
 import pl.plecicki.plant.tree.Tree;
 
 import java.util.LinkedList;
@@ -37,6 +34,12 @@ public class TreeBranch implements TreePart {
         return true;
     }
 
+    public boolean dropLeafNeedle(int leafIndex) throws LeafNeedleIndexDoesntExists {
+        if (leafIndex >= treeLeafesNeedles.size()) throw new LeafNeedleIndexDoesntExists();
+        treeLeafesNeedles.remove(leafIndex);
+        return true;
+    }
+
     @Override
     public boolean grow(int growAmount) throws NotEnoughWaterToMeetPassedGrowAmount, NotEnoughSunToMeetPassedGrowAmount {
         while(growAmount > 0) {
@@ -60,5 +63,37 @@ public class TreeBranch implements TreePart {
     public boolean addSun(int sunAmount) {
         branchSunAmount += sunAmount;
         return true;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getBranchWaterAmount() {
+        return branchWaterAmount;
+    }
+
+    public void setBranchWaterAmount(int branchWaterAmount) {
+        this.branchWaterAmount = branchWaterAmount;
+    }
+
+    public int getBranchSunAmount() {
+        return branchSunAmount;
+    }
+
+    public void setBranchSunAmount(int branchSunAmount) {
+        this.branchSunAmount = branchSunAmount;
+    }
+
+    public List<TreeLeafNeedle> getTreeLeafesNeedles() {
+        return treeLeafesNeedles;
+    }
+
+    public void setTreeLeafesNeedles(List<TreeLeafNeedle> treeLeafesNeedles) {
+        this.treeLeafesNeedles = treeLeafesNeedles;
     }
 }

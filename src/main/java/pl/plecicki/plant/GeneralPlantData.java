@@ -4,24 +4,17 @@ import java.time.LocalDate;
 
 public class GeneralPlantData {
 
-    private int age;
-    private int hydrationLevel;
-    private LocalDate plantingDate;
-    private int waterLevel;
-    private boolean isAlive;
+    private int age = 0;
+    private int hydrationLevel = 0;
+    private LocalDate plantingDate = LocalDate.now();
+    private int waterLevel = 0;
+    private boolean isAlive = true;
     private String localisation;
 
     public GeneralPlantData() {
     }
 
-    public GeneralPlantData(int age, int hydrationLevel,
-                            LocalDate plantingDate, int waterLevel,
-                            boolean isAlive, String localisation) {
-        this.age = age;
-        this.hydrationLevel = hydrationLevel;
-        this.plantingDate = plantingDate;
-        this.waterLevel = waterLevel;
-        this.isAlive = isAlive;
+    public GeneralPlantData(String localisation) {
         this.localisation = localisation;
     }
 
