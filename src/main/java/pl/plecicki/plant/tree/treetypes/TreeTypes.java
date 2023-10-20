@@ -1,4 +1,4 @@
-package pl.plecicki.treetypes;
+package pl.plecicki.plant.tree.treetypes;
 
 public interface TreeTypes {
 }
