@@ -14,18 +14,16 @@ public class Tree {
 
     private TreeType treeType;
     private GeneralPlantData generalPlantData;
-    private List<TreeBranch> treeBranches;
+    private List<TreeBranch> branches;
     private TreeRoot root;
     private TreeTrunk trunk;
 
-    public Tree() {
-    }
 
     public Tree(TreeType treeType, String localisation,
-                List<TreeBranch> treeBranches, TreeRoot root, TreeTrunk trunk) {
+                List<TreeBranch> branches, TreeRoot root, TreeTrunk trunk) {
         this.treeType = treeType;
         this.generalPlantData = new GeneralPlantData(localisation);
-        this.treeBranches = treeBranches;
+        this.branches = branches;
         this.root = root;
         this.trunk = trunk;
     }
@@ -40,25 +38,25 @@ public class Tree {
 
     public boolean passWaterFromBranchToLeafesNeedles(int waterAmount, int branchIndex)
             throws BranchIndexDoesntExists, NotEnoughWaterToPass {
-        if (treeBranches.size() <= branchIndex) throw new BranchIndexDoesntExists();
-        return treeBranches.get(branchIndex).passWaterHigher(waterAmount, this);
+        if (branches.size() <= branchIndex) throw new BranchIndexDoesntExists();
+        return branches.get(branchIndex).passWaterHigher(waterAmount, this);
     }
 
     public boolean passSunFromLeafsNeedleToBranch(int sunAmount, int branchIndex, int leafNeedleIndex)
             throws BranchIndexDoesntExists, LeafNeedleIndexDoesntExists, NotEnoughSunToPass {
 
-        if (treeBranches.size() <= branchIndex) throw new BranchIndexDoesntExists();
-        if (treeBranches.get(branchIndex).getTreeLeafesNeedles().size() <= leafNeedleIndex)
+        if (branches.size() <= branchIndex) throw new BranchIndexDoesntExists();
+        if (branches.get(branchIndex).getTreeLeafesNeedles().size() <= leafNeedleIndex)
             throw new LeafNeedleIndexDoesntExists();
 
-        return treeBranches.get(branchIndex).getTreeLeafesNeedles().get(leafNeedleIndex)
-                .passSunLower(sunAmount, treeBranches.get(branchIndex));
+        return branches.get(branchIndex).getTreeLeafesNeedles().get(leafNeedleIndex)
+                .passSunLower(sunAmount, branches.get(branchIndex));
     }
 
     public boolean passSunFromBranchToTrunk(int sunAmount, int branchIndex)
             throws BranchIndexDoesntExists, NotEnoughSunToPass {
-        if (treeBranches.size() <= branchIndex) throw new BranchIndexDoesntExists();
-        return treeBranches.get(branchIndex).passSunLower(sunAmount, this);
+        if (branches.size() <= branchIndex) throw new BranchIndexDoesntExists();
+        return branches.get(branchIndex).passSunLower(sunAmount, this);
     }
 
     public boolean passSunFromTrunkToRoot(int sunAmount) throws NotEnoughWaterToPass {
@@ -69,17 +67,17 @@ public class Tree {
             throws BranchIndexDoesntExists, LeafNeedleIndexDoesntExists,
             NotEnoughWaterToMeetPassedGrowAmount, NotEnoughSunToMeetPassedGrowAmount {
 
-        if (treeBranches.size() <= branchIndex) throw new BranchIndexDoesntExists();
-        if (treeBranches.get(branchIndex).getTreeLeafesNeedles().size() <= leafNeedleIndex)
+        if (branches.size() <= branchIndex) throw new BranchIndexDoesntExists();
+        if (branches.get(branchIndex).getTreeLeafesNeedles().size() <= leafNeedleIndex)
             throw new LeafNeedleIndexDoesntExists();
 
-        return treeBranches.get(branchIndex).getTreeLeafesNeedles().get(leafNeedleIndex).grow(growAmount);
+        return branches.get(branchIndex).getTreeLeafesNeedles().get(leafNeedleIndex).grow(growAmount);
     }
 
     public boolean growBranch(int growAmount, int branchIndex)
             throws BranchIndexDoesntExists, NotEnoughWaterToMeetPassedGrowAmount, NotEnoughSunToMeetPassedGrowAmount {
-        if (treeBranches.size() <= branchIndex) throw new BranchIndexDoesntExists();
-        return treeBranches.get(branchIndex).grow(growAmount);
+        if (branches.size() <= branchIndex) throw new BranchIndexDoesntExists();
+        return branches.get(branchIndex).grow(growAmount);
     }
 
     public boolean growTrunk(int growAmount)
@@ -95,34 +93,28 @@ public class Tree {
     public boolean dropLeafNeedle(int branchIndex, int leafNeedleIndex)
             throws BranchIndexDoesntExists, LeafNeedleIndexDoesntExists {
 
-        if (treeBranches.size() <= branchIndex) throw new BranchIndexDoesntExists();
-        if (treeBranches.get(branchIndex).getTreeLeafesNeedles().size() <= leafNeedleIndex)
+        if (branches.size() <= branchIndex) throw new BranchIndexDoesntExists();
+        if (branches.get(branchIndex).getTreeLeafesNeedles().size() <= leafNeedleIndex)
             throw new LeafNeedleIndexDoesntExists();
 
-        return treeBranches.get(branchIndex).dropLeafNeedle(leafNeedleIndex);
+        return branches.get(branchIndex).dropLeafNeedle(leafNeedleIndex);
     }
 
-    public List<TreeBranch> getTreeBranches() {
-        return treeBranches;
+    public boolean cutThisTree() throws TreeHasBeenCutBefore {
+        if (!generalPlantData.isAlive()) throw new TreeHasBeenCutBefore();
+        generalPlantData.setAlive(false);
+        return true;
     }
 
-    public void setTreeBranches(List<TreeBranch> treeBranches) {
-        this.treeBranches = treeBranches;
+    public List<TreeBranch> getBranches() {
+        return branches;
     }
 
     public TreeRoot getRoot() {
         return root;
     }
 
-    public void setRoot(TreeRoot root) {
-        this.root = root;
-    }
-
     public TreeTrunk getTrunk() {
         return trunk;
-    }
-
-    public void setTrunk(TreeTrunk trunk) {
-        this.trunk = trunk;
     }
 }

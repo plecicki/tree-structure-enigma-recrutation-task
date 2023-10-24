@@ -3,10 +3,6 @@ package pl.plecicki.plant.tree.parts;
 import pl.plecicki.exceptions.NotEnoughSunToMeetPassedGrowAmount;
 import pl.plecicki.exceptions.NotEnoughSunToPass;
 import pl.plecicki.exceptions.NotEnoughWaterToMeetPassedGrowAmount;
-import pl.plecicki.exceptions.NotEnoughWaterToPass;
-import pl.plecicki.plant.tree.Tree;
-
-import java.util.List;
 
 public class TreeLeafNeedle implements TreePart {
 

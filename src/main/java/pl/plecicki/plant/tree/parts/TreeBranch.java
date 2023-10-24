@@ -65,35 +65,7 @@ public class TreeBranch implements TreePart {
         return true;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getBranchWaterAmount() {
-        return branchWaterAmount;
-    }
-
-    public void setBranchWaterAmount(int branchWaterAmount) {
-        this.branchWaterAmount = branchWaterAmount;
-    }
-
-    public int getBranchSunAmount() {
-        return branchSunAmount;
-    }
-
-    public void setBranchSunAmount(int branchSunAmount) {
-        this.branchSunAmount = branchSunAmount;
-    }
-
     public List<TreeLeafNeedle> getTreeLeafesNeedles() {
         return treeLeafesNeedles;
-    }
-
-    public void setTreeLeafesNeedles(List<TreeLeafNeedle> treeLeafesNeedles) {
-        this.treeLeafesNeedles = treeLeafesNeedles;
     }
 }

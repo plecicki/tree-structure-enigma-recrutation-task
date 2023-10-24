@@ -17,7 +17,7 @@ public class TreeTrunk implements TreePart {
     public boolean passWaterHigher(int waterAmount, Tree tree) throws NotEnoughWaterToPass {
 
         if (waterAmount > trunkWaterAmount) throw new NotEnoughWaterToPass();
-        List<TreeBranch> treeBranches = tree.getTreeBranches();
+        List<TreeBranch> treeBranches = tree.getBranches();
 
         //Trochę wody zostanie utracone przez zaokrąglanie całkowitoliczbowe
         //Jest to zabieg zamierzony inicjujący naturalne procesy utraty wody w roślinach

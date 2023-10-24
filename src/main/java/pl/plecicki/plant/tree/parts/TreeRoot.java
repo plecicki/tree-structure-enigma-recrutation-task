@@ -5,8 +5,6 @@ import pl.plecicki.exceptions.NotEnoughWaterToMeetPassedGrowAmount;
 import pl.plecicki.exceptions.NotEnoughWaterToPass;
 import pl.plecicki.plant.tree.Tree;
 
-import java.util.List;
-
 public class TreeRoot implements TreePart{
 
     private int size = 0;
